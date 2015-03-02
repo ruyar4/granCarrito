@@ -1,0 +1,6 @@
+<div class="jumbotron">
+	<% @pedidos.each do |p| %>
+			<%= p.cerveza.name %>
+			<%= image_tag(p.cerveza.photo, size:"80x80") %>
+	<% end %>
+</div>

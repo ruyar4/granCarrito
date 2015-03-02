@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <% if user_signed_in? %>
+  	<h4>Tu carrito</h4> 
+    <% @mis_pedidos.each do |pedido| %>
+      <%= link_to image_tag(pedido.cerveza.photo_url, class:"pedido", size:"60x60"), cerveza_pedido_path(pedido.cerveza, pedido), method: :delete%>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="container">
+	<% @cervezas.each do |cerveza| %>
+		<div class="col-md-3">
+			<div class="thumbnail">
+				<h2><strong><%= cerveza.name %></strong></h2>
+				<%= image_tag cerveza.photo, :class => 'img-responsive' %>
+				<div class="btn-group">
+					<a href="#" class="btn btn-primary"> Mostrar </a>
+					<a href="<%= new_cerveza_pedido_path(cerveza) %>" class="btn btn-primary"> Pedir </a>
+				</div>
+			</div>
+		</div>
+	<% end  %>
+</div>
