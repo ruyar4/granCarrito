@@ -11,7 +11,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'pg_search'
 gem 'pg'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 # Use SCSS for stylesheets
