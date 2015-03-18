@@ -1,6 +1,8 @@
 class PedidosController < ApplicationController
 	def index
-		@pedidos = current_user.pedidos
+		if user_signed_in?
+			@pedidos = current_user.pedidos
+		end
 		#@cervezas = Cerveza.find(params[@pedidos.cerveza_id])
 	end
 

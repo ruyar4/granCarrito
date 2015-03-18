@@ -1,0 +1,17 @@
+<%= form_for(@cerveza) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :brand %><br>
+    <%= f.text_field :brand %>
+  </div>
+  <div>
+  	<%= f.label :photo %>
+  	<%= f.file_field :photo%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

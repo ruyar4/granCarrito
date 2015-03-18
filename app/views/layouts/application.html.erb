@@ -31,18 +31,20 @@
       <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span>Gran Carrito</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Collect thesss nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/cervezas">Productos<span class="sr-only">(current)</span></a></li>
-        <li><a href="<%= pedidos_path %>">Tus pedidos</a></li>
+        <% if user_signed_in? %>
+          <li><a href="<%= pedidos_path %>">Tus pedidos</a></li>
+        <% end %>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <%= form_tag({controller: "cervezas", action: "index"}, method: "get", class: "navbar-form navbar-left") do %>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <%= text_field_tag(:searchbox, "", class: "form-control")%>
+          <%= submit_tag "Buscar", name: nil, class: "btn btn-default" %>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% unless user_signed_in? %>
               <li> <%= link_to("Ingresar", new_user_session_path)%></li>

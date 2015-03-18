@@ -1,27 +1,39 @@
 class CervezasController < ApplicationController
+
 	def index
-	    @cervezas = Cerveza.all
+	    #@cervezas = Cerveza.all
     	if user_signed_in?
       		@mis_pedidos = current_user.pedidos
     	end
-    	@mis_pedidos = current_user.pedidos
+      if !(params[:searchbox])
+        @cervezas = Cerveza.all
+      else
+    	   @cervezas = Cerveza.search_name(params[:searchbox])
+      end
   	end
 
   	def show
   	end
 
+  	def new
+  		@cerveza = Cerveza.new
+  	end
+
   	def create
 	    @cerveza = Cerveza.new(cerveza_params)
+	    @cerveza.user_id = current_user.id
+	    @cerveza.save
+	    redirect_to cervezas_path
+  	end
 
-	    respond_to do |format|
-	      if @cerveza.save
-	        format.html { redirect_to @cerveza, notice: 'Cerveza was successfully created.' }
-	        format.json { render :show, status: :created, location: @cerveza }
-	      else
-	        format.html { render :new }
-	        format.json { render json: @cerveza.errors, status: :unprocessable_entity }
-	      end
-	    end
+  	def destroy
+  		@cerveza = set_cerveza
+	    @cerveza.destroy
+	    redirect_to cervezas_path
+  	end
+
+  	def search
+  		results = PgSearch.multisearch()
   	end
 
   	private
