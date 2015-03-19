@@ -4,7 +4,10 @@ class Cerveza < ActiveRecord::Base
 
 	mount_uploader :photo, PhotoUploader
 
+	def set_brand
+		cerveza.brand
+	end
+
 	include PgSearch
-	pg_search_scope :search_name, :against => :name
-  	#multisearchable :against => [:name]
+	pg_search_scope :search_name, :against => [:name, :brand]
 end
