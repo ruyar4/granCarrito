@@ -1,6 +1,6 @@
 class CervezasController < ApplicationController
 
-	def index
+	  def index
 	    #@cervezas = Cerveza.all
     	if user_signed_in?
       		@mis_pedidos = current_user.pedidos
@@ -10,7 +10,7 @@ class CervezasController < ApplicationController
       else
     	   @cervezas = Cerveza.search_name(params[:searchbox])
       end
-  	end
+    end
 
   	def show
   	end
@@ -32,9 +32,9 @@ class CervezasController < ApplicationController
 	    redirect_to cervezas_path
   	end
 
-  	def search
-  		results = PgSearch.multisearch()
-  	end
+  	#def search
+  	#	results = PgSearch.multisearch()
+  	#end
 
   	private
 	    # Use callbacks to share common setup or constraints between actions.

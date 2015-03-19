@@ -16,8 +16,10 @@
 				<div class="btn-group">
 					<a href="#" class="btn btn-primary"> Mostrar </a>
 					<a href="<%= new_cerveza_pedido_path(cerveza) %>" class="btn btn-primary"> Pedir </a>
-					<% if cerveza.user_id == current_user.id %>
-						<%= link_to 'Borrar', cerveza, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+					<% if user_signed_in? %>
+						<% if cerveza.user_id == current_user.id %>
+							<%= link_to 'Borrar', cerveza, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+						<% end %>
 					<% end %>
 				</div>
 			</div>
